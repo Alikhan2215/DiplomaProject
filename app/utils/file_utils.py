@@ -1,6 +1,6 @@
 import uuid
 from pathlib import Path
-import fitz        # PyMuPDF
+import pymupdf        # PyMuPDF
 import docx        # python-docx
 import pptx        # python-pptx
 from fastapi import HTTPException
@@ -35,7 +35,7 @@ def extract_text(path: Path) -> str:
     ext = path.suffix.lower()
 
     if ext == ".pdf":
-        doc = fitz.open(path)
+        doc = pymupdf.open(path)
         return "\n".join(page.get_text() for page in doc)
 
     if ext == ".docx":
