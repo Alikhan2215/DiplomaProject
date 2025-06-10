@@ -22,7 +22,9 @@ middleware = [
 ]
 
 app = FastAPI()
-
+@app.get("/")
+def read_root():
+    return {"message": "FastAPI is working!"}
 # include auth routes
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(users_router, prefix="/users", tags=["users"])
